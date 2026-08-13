@@ -3,14 +3,16 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const AuthLayout = async({children}: {children: React.ReactNode}) => {
-    const session = await auth.api.getSession({
-        headers:await headers()
-    })
+export const dynamic = "force-dynamic"
 
-    if(session){
-        return redirect("/")
-    }
+const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (session) {
+    return redirect("/")
+  }
 
   return (
     <div>{children}</div>
